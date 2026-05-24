@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://player.gd" id="1_player"]
+[ext_resource type="Texture2D" path="res://icon.svg" id="2_tex"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Hint" type="Label" parent="."]
+offset_left = 24.0
+offset_top = 16.0
+offset_right = 800.0
+offset_bottom = 56.0
+text = "WASD / 方向键移动 · Shift 加速 · ESC 退出"
+
+[node name="Player" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("2_tex")
+script = ExtResource("1_player")

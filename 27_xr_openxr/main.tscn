@@ -1,0 +1,75 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://xr_root.gd" id="1_root"]
+
+[sub_resource type="ProceduralSkyMaterial" id="sky_mat"]
+sky_top_color = Color(0.35, 0.45, 0.7, 1)
+sky_horizon_color = Color(0.7, 0.75, 0.85, 1)
+
+[sub_resource type="Sky" id="sky"]
+sky_material = SubResource("sky_mat")
+
+[sub_resource type="Environment" id="env"]
+background_mode = 2
+sky = SubResource("sky")
+tonemap_mode = 2
+ambient_light_source = 3
+ambient_light_color = Color(0.6, 0.6, 0.7, 1)
+
+[sub_resource type="BoxMesh" id="box"]
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_root")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("env")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.8, -0.4, 0.45, 0, 0.75, 0.66, -0.6, -0.53, 0.6, 0, 6, 0)
+shadow_enabled = true
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+transform = Transform3D(20, 0, 0, 0, 0.1, 0, 0, 0, 20, 0, -0.05, 0)
+mesh = SubResource("box")
+
+[node name="Table" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.2, 0, 0, 0, 0.8, 0, 0, 0, 0.6, 0, 0.4, -0.6)
+mesh = SubResource("box")
+
+[node name="GrabCube" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(0.12, 0, 0, 0, 0.12, 0, 0, 0, 0.12, 0, 0.9, -0.6)
+mesh = SubResource("box")
+
+[node name="XROrigin3D" type="XROrigin3D" parent="."]
+
+[node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+
+[node name="LeftHand" type="XRController3D" parent="XROrigin3D"]
+tracker = &"left_hand"
+
+[node name="LeftMesh" type="MeshInstance3D" parent="XROrigin3D/LeftHand"]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.12, 0, 0, 0)
+mesh = SubResource("box")
+
+[node name="RightHand" type="XRController3D" parent="XROrigin3D"]
+tracker = &"right_hand"
+
+[node name="RightMesh" type="MeshInstance3D" parent="XROrigin3D/RightHand"]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.12, 0, 0, 0)
+mesh = SubResource("box")
+
+[node name="DesktopCamera" type="Camera3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.92, 0.38, 0, -0.38, 0.92, 0, 1.8, 2.2)
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="StatusLabel" type="Label" parent="HUD"]
+unique_name_in_owner = true
+offset_left = 16.0
+offset_top = 12.0
+offset_right = 1130.0
+offset_bottom = 80.0
+text = ""

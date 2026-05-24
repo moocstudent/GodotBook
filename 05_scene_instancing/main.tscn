@@ -1,0 +1,48 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://main.gd" id="1_main"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_main")
+
+[node name="Background" type="ColorRect" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.08, 0.1, 0.15, 1)
+
+[node name="Hint" type="Label" parent="."]
+offset_left = 24.0
+offset_top = 16.0
+offset_right = 1100.0
+offset_bottom = 56.0
+text = "A/D 移动 · Space 射击 · 不按也会自动开火(Timer)· ESC 退出"
+
+[node name="StatsLabel" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 24.0
+offset_top = 56.0
+offset_right = 600.0
+offset_bottom = 96.0
+text = ""
+
+[node name="Player" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(576, 560)
+
+[node name="PlayerVisual" type="ColorRect" parent="Player"]
+offset_left = -20.0
+offset_top = -16.0
+offset_right = 20.0
+offset_bottom = 16.0
+color = Color(0.4, 0.85, 0.4, 1)
+
+[node name="Muzzle" type="Marker2D" parent="Player"]
+position = Vector2(0, -20)
+
+[node name="AutoFireTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.4
+autostart = true
+
+[node name="Bullets" type="Node2D" parent="."]
+unique_name_in_owner = true

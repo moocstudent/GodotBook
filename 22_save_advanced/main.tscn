@@ -1,0 +1,107 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://main.gd" id="1_main"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_main")
+
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.12, 0.15, 0.22, 1)
+
+[node name="Margin" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 16
+
+[node name="VBox" type="VBoxContainer" parent="Margin"]
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Margin/VBox"]
+theme_override_font_sizes/font_size = 26
+text = "Save Advanced: 多 Slot · 加密 · 版本迁移 · 云同步"
+
+[node name="EditorRow" type="HBoxContainer" parent="Margin/VBox"]
+theme_override_constants/separation = 8
+
+[node name="NameLabel" type="Label" parent="Margin/VBox/EditorRow"]
+custom_minimum_size = Vector2(80, 0)
+text = "name"
+
+[node name="NameEdit" type="LineEdit" parent="Margin/VBox/EditorRow"]
+unique_name_in_owner = true
+size_flags_horizontal = 3
+
+[node name="ScoreLabel" type="Label" parent="Margin/VBox/EditorRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(140, 0)
+text = "score: 0"
+
+[node name="ScoreMinus" type="Button" parent="Margin/VBox/EditorRow"]
+unique_name_in_owner = true
+text = "-10"
+
+[node name="ScorePlus" type="Button" parent="Margin/VBox/EditorRow"]
+unique_name_in_owner = true
+text = "+10"
+
+[node name="LevelLabel" type="Label" parent="Margin/VBox/EditorRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 0)
+text = "Lv: 1"
+
+[node name="LevelUp" type="Button" parent="Margin/VBox/EditorRow"]
+unique_name_in_owner = true
+text = "Lv +"
+
+[node name="OptionsRow" type="HBoxContainer" parent="Margin/VBox"]
+theme_override_constants/separation = 12
+
+[node name="EncryptCheck" type="CheckBox" parent="Margin/VBox/OptionsRow"]
+unique_name_in_owner = true
+text = "写入时加密 (.sav)"
+button_pressed = true
+
+[node name="CloudUrlLabel" type="Label" parent="Margin/VBox/OptionsRow"]
+text = "云端:"
+
+[node name="CloudUrlEdit" type="LineEdit" parent="Margin/VBox/OptionsRow"]
+unique_name_in_owner = true
+size_flags_horizontal = 3
+text = "https://your-backend.example.com/saves"
+
+[node name="Sep1" type="HSeparator" parent="Margin/VBox"]
+
+[node name="SlotsTitle" type="Label" parent="Margin/VBox"]
+theme_override_font_sizes/font_size = 18
+text = "存档槽 (slot 0/1/2)"
+
+[node name="SlotsList" type="VBoxContainer" parent="Margin/VBox"]
+unique_name_in_owner = true
+theme_override_constants/separation = 8
+
+[node name="Sep2" type="HSeparator" parent="Margin/VBox"]
+
+[node name="PathLabel" type="Label" parent="Margin/VBox"]
+unique_name_in_owner = true
+autowrap_mode = 2
+modulate = Color(1, 1, 1, 0.6)
+theme_override_font_sizes/font_size = 12
+text = ""
+
+[node name="Log" type="TextEdit" parent="Margin/VBox"]
+unique_name_in_owner = true
+size_flags_vertical = 3
+editable = false
+placeholder_text = "(log)"
+wrap_mode = 1

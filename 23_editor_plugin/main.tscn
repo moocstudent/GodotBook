@@ -1,0 +1,44 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://main.gd" id="1_main"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_main")
+
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.12, 0.15, 0.22, 1)
+
+[node name="VBox" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -360.0
+offset_top = -160.0
+offset_right = 360.0
+offset_bottom = 160.0
+theme_override_constants/separation = 16
+
+[node name="Title" type="Label" parent="VBox"]
+theme_override_font_sizes/font_size = 28
+text = "Editor Plugin Demo"
+horizontal_alignment = 1
+
+[node name="Body" type="Label" parent="VBox"]
+autowrap_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "本场景没什么可看。重点是打开 Godot 编辑器:\n• 左侧 Dock 多出一个 '📋 GodotStuff' 面板\n• 顶部 Project → Tools 菜单多了 'GodotStuff: Reset Notes'\n\n插件代码全在 res://addons/godotstuff_dock/ 下。"
+horizontal_alignment = 1
+
+[node name="Hint" type="Label" parent="VBox"]
+modulate = Color(1, 1, 1, 0.6)
+text = "(ESC 退出运行时窗口)"
+horizontal_alignment = 1

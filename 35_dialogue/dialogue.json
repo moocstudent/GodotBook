@@ -1,0 +1,52 @@
+{
+  "start": "intro",
+  "nodes": {
+    "intro": {
+      "speaker": "神秘商人",
+      "text": "欢迎,旅行者。看你风尘仆仆,需要点什么吗?",
+      "choices": [
+        { "text": "我想买把剑。", "next": "shop_sword" },
+        { "text": "你这儿有什么消息?", "next": "rumor" },
+        { "text": "（什么都不说,离开）", "next": "leave" }
+      ]
+    },
+    "shop_sword": {
+      "speaker": "神秘商人",
+      "text": "好眼光!这把寒铁剑要 50 金币。",
+      "choices": [
+        { "text": "成交。", "next": "buy_ok", "set": { "has_sword": true }, "require_gold": 50 },
+        { "text": "太贵了。", "next": "too_expensive" }
+      ]
+    },
+    "buy_ok": {
+      "speaker": "神秘商人",
+      "text": "明智的选择。愿它护你周全。",
+      "choices": [ { "text": "（回到对话）", "next": "intro" } ]
+    },
+    "too_expensive": {
+      "speaker": "神秘商人",
+      "text": "嘿,一分钱一分货。要不再看看?",
+      "choices": [ { "text": "（回到对话）", "next": "intro" } ]
+    },
+    "rumor": {
+      "speaker": "神秘商人",
+      "text": "听说北边的废墟里有宝藏……不过也有怪物。",
+      "choices": [
+        { "text": "告诉我更多。", "next": "rumor2" },
+        { "text": "（回到对话）", "next": "intro" }
+      ]
+    },
+    "rumor2": {
+      "speaker": "神秘商人",
+      "text": "带上武器再去吧。没剑的话,我可不保证你能回来。",
+      "choices": [
+        { "text": "（回到对话）", "next": "intro" }
+      ]
+    },
+    "leave": {
+      "speaker": "神秘商人",
+      "text": "……下次再来。",
+      "choices": []
+    }
+  }
+}

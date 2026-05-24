@@ -1,0 +1,48 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://main.gd" id="1_main"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_main")
+
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.08, 0.10, 0.14, 1)
+
+[node name="Margin" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 16
+
+[node name="VBox" type="VBoxContainer" parent="Margin"]
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Margin/VBox"]
+theme_override_font_sizes/font_size = 24
+text = "Test Runner"
+
+[node name="RunBtn" type="Button" parent="Margin/VBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+text = "运行全部测试"
+
+[node name="Summary" type="Label" parent="Margin/VBox"]
+unique_name_in_owner = true
+theme_override_font_sizes/font_size = 16
+text = ""
+
+[node name="Output" type="RichTextLabel" parent="Margin/VBox"]
+unique_name_in_owner = true
+size_flags_vertical = 3
+bbcode_enabled = true
+scroll_active = true

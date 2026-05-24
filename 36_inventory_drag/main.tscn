@@ -1,0 +1,44 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://main.gd" id="1_main"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_main")
+
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.11, 0.13, 0.18, 1)
+
+[node name="Title" type="Label" parent="."]
+offset_left = 24.0
+offset_top = 20.0
+offset_right = 1100.0
+offset_bottom = 56.0
+theme_override_font_sizes/font_size = 24
+text = "背包 — 拖动物品到其它格子:空格=移动,同物品=堆叠,不同=交换"
+
+[node name="GridCenter" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 70.0
+
+[node name="Grid" type="GridContainer" parent="GridCenter"]
+unique_name_in_owner = true
+columns = 6
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+
+[node name="Tooltip" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 24.0
+offset_top = 600.0
+offset_right = 1100.0
+offset_bottom = 632.0
+text = ""

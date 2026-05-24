@@ -1,0 +1,7 @@
+{
+  "items": {
+    "sword":  { "name": "铁剑",   "damage": 10, "color": "#b0b8c8" },
+    "bow":    { "name": "短弓",   "damage": 7,  "color": "#a0742a" },
+    "staff":  { "name": "木杖",   "damage": 5,  "color": "#6a8f4a" }
+  }
+}

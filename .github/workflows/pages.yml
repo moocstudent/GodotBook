@@ -1,0 +1,42 @@
+name: Deploy GitHub Pages
+
+# 每次推送到 main 时:重新生成站点(可选)+ 发布到 GitHub Pages。
+# 也支持手动触发。
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      # 可选:在 CI 上用 PowerShell Core 重新生成站点,保证 HTML 与源码同步。
+      # 仓库里已经 commit 了生成好的 HTML,这步是"保险"。
+      - name: Regenerate site (optional)
+        shell: pwsh
+        run: ./build_site.ps1
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .            # 整个仓库根作为站点(index.html 在根)
+
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4

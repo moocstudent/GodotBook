@@ -1,0 +1,65 @@
+name: Publish to itch.io
+
+# 仅在 push tag(如 v0.1.0)时触发
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+
+env:
+  GODOT_VERSION: 4.3
+  GODOT_STATUS: stable
+  PROJECT_PATH: 01_hello_world
+  ITCH_USER: yourname
+  ITCH_GAME: hello-godot
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - preset: "Linux/X11"
+            output: build/game.x86_64
+            channel: linux
+          - preset: "Windows Desktop"
+            output: build/game.exe
+            channel: windows
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Godot + templates
+        run: |
+          set -euo pipefail
+          wget -q "https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-${GODOT_STATUS}/Godot_v${GODOT_VERSION}-${GODOT_STATUS}_linux.x86_64.zip"
+          unzip -q "Godot_v${GODOT_VERSION}-${GODOT_STATUS}_linux.x86_64.zip"
+          sudo mv "Godot_v${GODOT_VERSION}-${GODOT_STATUS}_linux.x86_64" /usr/local/bin/godot
+          sudo chmod +x /usr/local/bin/godot
+          wget -q "https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-${GODOT_STATUS}/Godot_v${GODOT_VERSION}-${GODOT_STATUS}_export_templates.tpz"
+          mkdir -p ~/.local/share/godot/export_templates/${GODOT_VERSION}.${GODOT_STATUS}
+          unzip -qo "Godot_v${GODOT_VERSION}-${GODOT_STATUS}_export_templates.tpz"
+          mv templates/* ~/.local/share/godot/export_templates/${GODOT_VERSION}.${GODOT_STATUS}/
+
+      - name: Export
+        working-directory: ${{ env.PROJECT_PATH }}
+        run: |
+          mkdir -p build
+          godot --headless --export-release "${{ matrix.preset }}" "${{ matrix.output }}"
+
+      - name: Install butler
+        run: |
+          curl -L -o butler.zip https://broth.itch.zone/butler/linux-amd64/LATEST/archive/default
+          unzip -q butler.zip
+          chmod +x butler
+          ./butler -V
+
+      - name: Push to itch.io
+        env:
+          BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
+        run: |
+          VERSION=${GITHUB_REF#refs/tags/v}
+          ./butler push \
+              ${{ env.PROJECT_PATH }}/build/ \
+              ${{ env.ITCH_USER }}/${{ env.ITCH_GAME }}:${{ matrix.channel }} \
+              --userversion "$VERSION"

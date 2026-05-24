@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <rect width="128" height="128" rx="16" fill="#161e2e"/>
+  <text x="32" y="56" font-family="Arial" font-size="32" fill="#56b4d3" font-weight="bold">A</text>
+  <text x="68" y="56" font-family="Arial" font-size="32" fill="#f6c259" font-weight="bold">文</text>
+  <text x="32" y="104" font-family="Arial" font-size="32" fill="#ef656f" font-weight="bold">あ</text>
+  <text x="76" y="104" font-family="Arial" font-size="32" fill="#6cd070" font-weight="bold">Ñ</text>
+</svg>

@@ -1,0 +1,59 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>安装指南 - godotstuff</title><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github-dark.min.css"><style>:root{--bg:#0d1017;--panel:#161b24;--border:#252c38;--fg:#c9d1d9;--muted:#8b949e;--accent:#58a6ff;--accent2:#56d364}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:-apple-system,Segoe UI,Roboto,"Microsoft YaHei",sans-serif;line-height:1.65}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+header{position:sticky;top:0;background:rgba(13,16,23,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);padding:14px 24px;display:flex;align-items:center;gap:14px;z-index:10}
+header .num{font-weight:700;color:var(--accent2);font-family:ui-monospace,Consolas,monospace}
+header h1{font-size:18px;margin:0;font-weight:600}
+.wrap{max-width:1000px;margin:0 auto;padding:24px}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;border-bottom:1px solid var(--border);margin-bottom:18px}
+.tab{padding:8px 14px;border:1px solid transparent;border-bottom:none;border-radius:8px 8px 0 0;cursor:pointer;color:var(--muted);font-size:13px;font-family:ui-monospace,Consolas,monospace}
+.tab:hover{color:var(--fg)}
+.tab.active{background:var(--panel);color:var(--fg);border-color:var(--border)}
+.panel{display:none}.panel.active{display:block}
+pre{background:#0b0e14;border:1px solid var(--border);border-radius:8px;padding:16px;overflow:auto}
+code{font-family:ui-monospace,Consolas,"Cascadia Code",monospace;font-size:13px}
+.md h1,.md h2,.md h3{border-bottom:1px solid var(--border);padding-bottom:6px;margin-top:30px}
+.md table{border-collapse:collapse;width:100%;margin:14px 0;font-size:14px}
+.md th,.md td{border:1px solid var(--border);padding:6px 10px;text-align:left}
+.md th{background:var(--panel)}
+.md :not(pre)>code{background:#1f2530;padding:2px 6px;border-radius:4px;font-size:12.5px}
+.md pre code{background:none;padding:0}
+.md blockquote{border-left:3px solid var(--accent);margin:0 0 14px;padding:2px 14px;color:var(--muted);background:#11151d}
+.md img{max-width:100%}
+.hero{padding:46px 24px 34px;text-align:center;border-bottom:1px solid var(--border)}
+.hero h1{font-size:34px;margin:0 0 10px}
+.hero p{color:var(--muted);margin:4px 0}
+.hero .links{margin-top:14px;font-size:14px}
+.hero .links a{margin:0 10px}
+.search{width:100%;max-width:440px;padding:11px 16px;margin:20px auto 0;display:block;background:var(--panel);border:1px solid var(--border);border-radius:10px;color:var(--fg);font-size:14px;outline:none}
+.search:focus{border-color:var(--accent)}
+.cat{margin:36px 0 12px;font-size:12px;letter-spacing:1.5px;color:var(--accent2);text-transform:uppercase;font-weight:700}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(258px,1fr));gap:14px}
+.card{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:16px;transition:.15s;display:block}
+.card:hover{border-color:var(--accent);transform:translateY(-2px);text-decoration:none}
+.card .n{font-family:ui-monospace,monospace;color:var(--accent2);font-size:12px}
+.card h3{margin:6px 0;font-size:16px;color:var(--fg)}
+.card p{margin:0;color:var(--muted);font-size:13px}
+.foot{text-align:center;color:var(--muted);padding:34px;font-size:12px;border-top:1px solid var(--border);margin-top:30px}</style></head><body>
+<header><a href="index.html">&larr; 目录</a><span class="num"></span><h1>安装指南</h1></header>
+<div class="wrap"><div class="tabs" id="tabs"></div><div id="panels"></div></div>
+<script type="application/json" id="demodata">{"readme":"IyBHb2RvdCA0IOWuieijheaMh+WNlyhXaW5kb3dzIC8gRCDnm5jkvJjlhYgpCgo+IOe6puWumjrmiYDmnIkgU0RLIC8g5bel5YW36KOF5YiwICoqRCDnm5gqKizpgb/lhY0gQyDnm5joh4Pogr/jgIIKCiMjIDEuIOS4i+i9vSBHb2RvdCA0CgotIOWumOe9kTpodHRwczovL2dvZG90ZW5naW5lLm9yZy9kb3dubG9hZAotIOmAiSAqKkdvZG90IEVuZ2luZSAoU3RhbmRhcmQpKiog5LiN6KaBIC5ORVQg54mIKOmZpOmdnuS9oOimgeWGmSBDIykKLSDmlofku7bnsbvkvLwgYEdvZG90X3Y0LjMtc3RhYmxlX3dpbjY0LmV4ZWAo5Y2V5paH5Lu25Y+v5omn6KGMLOaXoOmcgOWuieijheWZqCkKCiMjIDIuIOaUvuWIsCBEIOebmAoK5o6o6I2Q6Lev5b6EOgoKYGBgCkQ6XEdvZG90XArilJTilIDilIAgR29kb3RfdjQuMy1zdGFibGVfd2luNjQuZXhlCmBgYAoK5oiW5pu05pW05rSB55qE54mI5pys5YyW5biD5bGAOgoKYGBgCkQ6XEdvZG90XArilJzilIDilIAgNC4zLXN0YWJsZVwK4pSCICAg4pSU4pSA4pSAIEdvZG90X3Y0LjMtc3RhYmxlX3dpbjY0LmV4ZQrilJTilIDilIAgY3VycmVudC5leGUgLT4gNC4zLXN0YWJsZVxHb2RvdF92NC4zLXN0YWJsZV93aW42NC5leGUgICAo5Y+v6YCJ56ym5Y+36ZO+5o6lKQpgYGAKCiMjIDMuIOWKoOWFpSBQQVRIKOWPr+mAiSkKCuWmguaenOaDs+WcqOS7u+S9lee7iOerr+mHjOebtOaOpSBgZ29kb3QgLi4uYDoKCioqUG93ZXJTaGVsbCjlvZPliY3nlKjmiLcs5oyB5LmF5YyWKToqKgpgYGBwb3dlcnNoZWxsCiRvbGQgPSBbRW52aXJvbm1lbnRdOjpHZXRFbnZpcm9ubWVudFZhcmlhYmxlKCJQYXRoIiwiVXNlciIpCltFbnZpcm9ubWVudF06OlNldEVudmlyb25tZW50VmFyaWFibGUoIlBhdGgiLCAiJG9sZDtEOlxHb2RvdCIsICJVc2VyIikKYGBgCgrnhLblkI4qKuaWsOW8gCoq5LiA5Liq57uI56uvLOmqjOivgToKYGBgcG93ZXJzaGVsbApnb2RvdCAtLXZlcnNpb24KIyDmnJ/mnJvovpPlh7rnsbvkvLw6NC4zLnN0YWJsZS5vZmZpY2lhbC43N2RjZjk3ZDgKYGBgCgo+IOWmguaenOWPr+aJp+ihjOaWh+S7tuWQjeW4pueJiOacrOWPtyzlj6/ku6Xlu7rkuIDkuKogYGdvZG90LmNtZGAg6L2s5Y+ROgo+IGBgYAo+IEBlY2hvIG9mZgo+ICJEOlxHb2RvdFxHb2RvdF92NC4zLXN0YWJsZV93aW42NC5leGUiICUqCj4gYGBgCgojIyA0LiDpqozor4Hog73ot5EKCmBgYHBvd2Vyc2hlbGwKJiAiRDpcR29kb3RcR29kb3RfdjQuMy1zdGFibGVfd2luNjQuZXhlIiAtLXBhdGggRDpcZ29kb3RzdHVmZlwwMV9oZWxsb193b3JsZApgYGAKCuW6lOivpeW8ueWHuueql+WPoyzlsY/luZXkuK3lpK7mmL7npLogIkhlbGxvLCBHb2RvdCEi44CCCgojIyA1LiAo5Y+v6YCJKeWvvOWHuuaooeadvwoK5aaC5p6c6KaB5omT5YyF5oiQIGAuZXhlYCAvIGAuYXBrYCAvIGAuaXBhYDoKCi0g57yW6L6R5Zmo5YaFOioqRWRpdG9yIOKGkiBNYW5hZ2UgRXhwb3J0IFRlbXBsYXRlcyDihpIgRG93bmxvYWQgYW5kIEluc3RhbGwqKgotIOaooeadv+WMheWkp+e6piA2MDBNQizpu5jorqToo4XlnKggYCVBUFBEQVRBJVxHb2RvdFxleHBvcnRfdGVtcGxhdGVzXDzniYjmnKw+XGAKLSDmg7PmkKzliLAgRCDnm5g66K6+572uIGBHT0RPVF9VU0VSX0RBVEFfRElSYCDmiJbnlKggc2VsZi1jb250YWluZWQg5qih5byPKOWcqCBleGUg5ZCM55uu5b2V5Yib5bu6IGBfc2NfYCDnqbrmlofku7YsR29kb3Qg5bCx5oqK5omA5pyJ5pWw5o2u5pS+5ZyoIGV4ZSDml4HovrkpCgoqKuiHquWMheWQq+aooeW8jyjmjqjojZAs5pWw5o2u5YWo5ZyoIEQg55uYKToqKgoKYGBgcG93ZXJzaGVsbApOZXctSXRlbSAtUGF0aCBEOlxHb2RvdFxfc2NfIC1JdGVtVHlwZSBGaWxlIC1Gb3JjZQpgYGAKCuS5i+WQjiBHb2RvdCDnmoTpobnnm67liJfooajjgIHlr7zlh7rmqKHmnb/jgIHnlKjmiLfphY3nva7pg73kvJrlhpnliLAgYEQ6XEdvZG90XGAg5LiLLOWujOWFqOiEseemuyBgQzpcVXNlcnNcPHlvdT5cQXBwRGF0YWAuCgojIyA2LiBBbmRyb2lkIOWvvOWHuijlkI7nu60gZGVtbyDkvJrnlKjliLApCgrpnIDopoHoo4U6Ci0gKipBbmRyb2lkIFN0dWRpbyoqIOaIluWNleeLrOeahCAqKkFuZHJvaWQgU0RLICsgTkRLKioo6KOFIEQg55uYOmBEOlxBbmRyb2lkXFNka2ApCi0gKipPcGVuSkRLIDE3Kioo6KOFIEQg55uYOmBEOlxKYXZhXGpkay0xN2ApCi0g5ZyoIEdvZG90IOmHjDoqKkVkaXRvciBTZXR0aW5ncyDihpIgRXhwb3J0IOKGkiBBbmRyb2lkKiog5aGr5aW9IFNESyAvIEphdmEg6Lev5b6ECi0g55Sf5oiQIGRlYnVnIGtleXN0b3JlOgogIGBgYHBvd2Vyc2hlbGwKICAmICJEOlxKYXZhXGpkay0xN1xiaW5ca2V5dG9vbC5leGUiIC1rZXlhbGcgUlNBIC1nZW5rZXlwYWlyIC1hbGlhcyBhbmRyb2lkZGVidWdrZXkgYAogICAgLWtleXBhc3MgYW5kcm9pZCAta2V5c3RvcmUgRDpcQW5kcm9pZFxkZWJ1Zy5rZXlzdG9yZSAtc3RvcmVwYXNzIGFuZHJvaWQgYAogICAgLWRuYW1lICJDTj1BbmRyb2lkIERlYnVnLE89QW5kcm9pZCxDPVVTIiAtdmFsaWRpdHkgOTk5OSAtZGVzdHN0b3JldHlwZSBwa2NzMTIKICBgYGAKCiMjIOW4uOingeWdkQoKfCDnjrDosaEgfCDljp/lm6AgLyDop6PlhrMgfAp8LS0tLS0tfC0tLS0tLS0tLS0tLXwKfCDlkK/liqjlkI7lrZfkvZPmlrnlnZcgfCDns7vnu5/nvLogQ0pLIOWtl+S9kyzmiJbpobnnm67nlKjkuoYgZmFsbGJhY2ss5pS555SoIGBOb3RvU2Fuc0NKS2AgfAp8IOm7keWxjyAvIOS4jea4suafkyB8IOaYvuWNoempseWKqOWkquiAgSzliIfmjaIgYFByb2plY3QgU2V0dGluZ3Mg4oaSIFJlbmRlcmluZyDihpIgUmVuZGVyZXIgPSBHTCBDb21wYXRpYmlsaXR5YCB8CnwgYC50c2NuYCDmiqUgInJlc291cmNlIG5vdCBmb3VuZCIgfCBVSUQg5aSx5pWILOWIoOaOiSBgLmdvZG90L2Ag6K6p57yW6L6R5Zmo6YeN55Sf5oiQIHwKfCDnp7vliqjnq6/lr7zlh7rpu5HlsY8gfCDnlKggYGdsX2NvbXBhdGliaWxpdHlgIOa4suafk+WQjuerryzkuI3opoHnlKggZm9yd2FyZCsgfAo=","files":[]}</script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script><script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+<script>
+function dec(b){return new TextDecoder().decode(Uint8Array.from(atob(b),function(c){return c.charCodeAt(0);}));}
+var R=JSON.parse(document.getElementById("demodata").textContent);
+var D={readme:dec(R.readme),files:R.files.map(function(f){return {name:f.name,lang:f.lang,code:dec(f.code)};})};
+var tabs=document.getElementById("tabs"),panels=document.getElementById("panels");
+function addTab(label,build,active){
+ var t=document.createElement("div");t.className="tab"+(active?" active":"");t.textContent=label;
+ var p=document.createElement("div");p.className="panel"+(active?" active":"");build(p);
+ tabs.appendChild(t);panels.appendChild(p);
+ t.onclick=function(){document.querySelectorAll(".tab").forEach(function(x){x.classList.remove("active");});document.querySelectorAll(".panel").forEach(function(x){x.classList.remove("active");});t.classList.add("active");p.classList.add("active");};
+}
+if(window.marked){marked.setOptions({gfm:true});}
+addTab("📖 文档",function(p){p.classList.add("md");if(window.marked){p.innerHTML=marked.parse(D.readme||"(no README)");}else{var pr=document.createElement("pre");pr.textContent=D.readme;p.appendChild(pr);}},true);
+D.files.forEach(function(f){addTab(f.name,function(p){var pre=document.createElement("pre");var c=document.createElement("code");c.className="language-"+f.lang;c.textContent=f.code;pre.appendChild(c);p.appendChild(pre);});});
+if(window.hljs){document.querySelectorAll("pre code").forEach(function(b){try{hljs.highlightElement(b);}catch(e){}});}
+</script></body></html>

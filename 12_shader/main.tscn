@@ -1,0 +1,100 @@
+[gd_scene load_steps=10 format=3]
+
+[ext_resource type="Script" path="res://main.gd" id="1_main"]
+[ext_resource type="Shader" path="res://scanline.gdshader" id="2_scan"]
+[ext_resource type="Shader" path="res://water.gdshader" id="3_water"]
+[ext_resource type="Shader" path="res://glow.gdshader" id="4_glow"]
+[ext_resource type="Shader" path="res://rainbow.gdshader" id="5_rain"]
+
+[sub_resource type="ShaderMaterial" id="mat_scan"]
+shader = ExtResource("2_scan")
+
+[sub_resource type="ShaderMaterial" id="mat_water"]
+shader = ExtResource("3_water")
+
+[sub_resource type="ShaderMaterial" id="mat_glow"]
+shader = ExtResource("4_glow")
+
+[sub_resource type="ShaderMaterial" id="mat_rain"]
+shader = ExtResource("5_rain")
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_main")
+
+[node name="Background" type="ColorRect" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.08, 0.1, 0.15, 1)
+
+[node name="Hint" type="Label" parent="."]
+offset_left = 24.0
+offset_top = 12.0
+offset_right = 1100.0
+offset_bottom = 48.0
+text = "4 个 Shader 演示:CRT / Water / Glow / Rainbow · 1-4 调脉冲速度 · ESC 退出"
+
+[node name="ScanlineLabel" type="Label" parent="."]
+offset_left = 60.0
+offset_top = 88.0
+offset_right = 560.0
+offset_bottom = 120.0
+text = "scanline.gdshader"
+
+[node name="ScanlineRect" type="ColorRect" parent="."]
+offset_left = 60.0
+offset_top = 120.0
+offset_right = 560.0
+offset_bottom = 320.0
+color = Color(0.3, 0.65, 0.4, 1)
+material = SubResource("mat_scan")
+
+[node name="WaterLabel" type="Label" parent="."]
+offset_left = 600.0
+offset_top = 88.0
+offset_right = 1100.0
+offset_bottom = 120.0
+text = "water.gdshader"
+
+[node name="WaterRect" type="ColorRect" parent="."]
+offset_left = 600.0
+offset_top = 120.0
+offset_right = 1100.0
+offset_bottom = 320.0
+material = SubResource("mat_water")
+
+[node name="GlowLabel" type="Label" parent="."]
+offset_left = 60.0
+offset_top = 360.0
+offset_right = 560.0
+offset_bottom = 392.0
+text = "glow.gdshader"
+
+[node name="GlowRect" type="ColorRect" parent="."]
+unique_name_in_owner = true
+offset_left = 60.0
+offset_top = 392.0
+offset_right = 560.0
+offset_bottom = 592.0
+material = SubResource("mat_glow")
+
+[node name="RainbowLabel" type="Label" parent="."]
+offset_left = 600.0
+offset_top = 360.0
+offset_right = 1100.0
+offset_bottom = 392.0
+text = "rainbow.gdshader"
+
+[node name="RainbowRect" type="ColorRect" parent="."]
+offset_left = 600.0
+offset_top = 392.0
+offset_right = 1100.0
+offset_bottom = 592.0
+material = SubResource("mat_rain")
+
+[node name="StatusLabel" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 24.0
+offset_top = 610.0
+offset_right = 1100.0
+offset_bottom = 640.0
+text = ""

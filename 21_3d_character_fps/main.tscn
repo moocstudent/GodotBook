@@ -1,0 +1,168 @@
+[gd_scene load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://player.gd" id="1_player"]
+
+[sub_resource type="ProceduralSkyMaterial" id="sky_mat"]
+sky_top_color = Color(0.32, 0.42, 0.65, 1)
+sky_horizon_color = Color(0.70, 0.62, 0.5, 1)
+ground_bottom_color = Color(0.18, 0.16, 0.14, 1)
+
+[sub_resource type="Sky" id="sky"]
+sky_material = SubResource("sky_mat")
+
+[sub_resource type="Environment" id="env"]
+background_mode = 2
+sky = SubResource("sky")
+tonemap_mode = 2
+ambient_light_color = Color(0.55, 0.55, 0.65, 1)
+ambient_light_energy = 0.35
+
+[sub_resource type="StandardMaterial3D" id="floor_mat"]
+albedo_color = Color(0.35, 0.40, 0.36, 1)
+roughness = 0.85
+
+[sub_resource type="StandardMaterial3D" id="wall_mat"]
+albedo_color = Color(0.55, 0.52, 0.48, 1)
+roughness = 0.7
+
+[sub_resource type="CapsuleShape3D" id="cap_shape"]
+height = 1.8
+radius = 0.35
+
+[node name="Main" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("env")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.8, -0.4, 0.45, 0, 0.75, 0.66, -0.6, -0.53, 0.6, 0, 12, 0)
+light_energy = 1.0
+shadow_enabled = true
+
+; ====== CSG 关卡 ============================================
+; CSGCombiner3D 的 use_collision = true 时,根据合并出的 mesh 自动生成碰撞体。
+; 子节点 operation:0=union(加),1=intersection(交),2=subtraction(减)
+
+[node name="Level" type="CSGCombiner3D" parent="."]
+use_collision = true
+
+; 地板
+[node name="Floor" type="CSGBox3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+size = Vector3(40, 1, 40)
+material = SubResource("floor_mat")
+
+; 四面墙
+[node name="WallN" type="CSGBox3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -20)
+size = Vector3(40, 4, 0.5)
+material = SubResource("wall_mat")
+
+[node name="WallS" type="CSGBox3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 20)
+size = Vector3(40, 4, 0.5)
+material = SubResource("wall_mat")
+
+[node name="WallE" type="CSGBox3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 1.5, 0)
+size = Vector3(0.5, 4, 40)
+material = SubResource("wall_mat")
+
+[node name="WallW" type="CSGBox3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1.5, 0)
+size = Vector3(0.5, 4, 40)
+material = SubResource("wall_mat")
+
+; 内墙 + 在内墙上 subtract 一个洞口
+[node name="InnerWall" type="CSGCombiner3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 4)
+use_collision = false
+
+[node name="WallBox" type="CSGBox3D" parent="Level/InnerWall"]
+size = Vector3(20, 4, 0.5)
+material = SubResource("wall_mat")
+
+[node name="Doorway" type="CSGBox3D" parent="Level/InnerWall"]
+operation = 2
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+size = Vector3(2.4, 2.6, 1.5)
+
+; 几个柱子(圆柱 CSGCylinder3D)
+[node name="Pillar1" type="CSGCylinder3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 2, -6)
+height = 4.0
+radius = 0.5
+material = SubResource("wall_mat")
+
+[node name="Pillar2" type="CSGCylinder3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 2, -6)
+height = 4.0
+radius = 0.5
+material = SubResource("wall_mat")
+
+[node name="Pillar3" type="CSGCylinder3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 2, 12)
+height = 4.0
+radius = 0.5
+material = SubResource("wall_mat")
+
+[node name="Pillar4" type="CSGCylinder3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 2, 12)
+height = 4.0
+radius = 0.5
+material = SubResource("wall_mat")
+
+; 阶梯(几个矮 box 错位)
+[node name="Stair1" type="CSGBox3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0.3, 0)
+size = Vector3(4, 0.6, 4)
+material = SubResource("wall_mat")
+
+[node name="Stair2" type="CSGBox3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0.9, -3)
+size = Vector3(4, 1.2, 2)
+material = SubResource("wall_mat")
+
+[node name="Stair3" type="CSGBox3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 1.5, -5.5)
+size = Vector3(4, 1.8, 1)
+material = SubResource("wall_mat")
+
+; ====== Player ==============================================
+
+[node name="Player" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 8)
+script = ExtResource("1_player")
+
+[node name="Collider" type="CollisionShape3D" parent="Player"]
+shape = SubResource("cap_shape")
+
+[node name="CamPivot" type="Node3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
+
+[node name="Camera" type="Camera3D" parent="Player/CamPivot"]
+fov = 70.0
+current = true
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="Crosshair" type="Label" parent="HUD"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -16.0
+offset_right = 8.0
+offset_bottom = 16.0
+text = "+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Hint" type="Label" parent="HUD"]
+offset_left = 12.0
+offset_top = 10.0
+offset_right = 1140.0
+offset_bottom = 40.0
+text = "WASD 移动 · 鼠标看 · Space 跳 · ESC 释放鼠标(再次 ESC 退出)· 左键 重新抓"

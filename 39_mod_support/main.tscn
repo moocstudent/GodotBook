@@ -1,0 +1,57 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://main.gd" id="1_main"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_main")
+
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.11, 0.12, 0.16, 1)
+
+[node name="Margin" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 16
+
+[node name="VBox" type="VBoxContainer" parent="Margin"]
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Margin/VBox"]
+theme_override_font_sizes/font_size = 24
+text = "Mod Support — 运行时加载资源包"
+
+[node name="ModStatus" type="Label" parent="Margin/VBox"]
+unique_name_in_owner = true
+autowrap_mode = 2
+modulate = Color(1, 1, 1, 0.75)
+text = ""
+
+[node name="Sep1" type="HSeparator" parent="Margin/VBox"]
+
+[node name="ItemsTitle" type="Label" parent="Margin/VBox"]
+theme_override_font_sizes/font_size = 18
+text = "已加载物品(基础 + mod 合并):"
+
+[node name="ItemsList" type="VBoxContainer" parent="Margin/VBox"]
+unique_name_in_owner = true
+size_flags_vertical = 3
+theme_override_constants/separation = 6
+
+[node name="Sep2" type="HSeparator" parent="Margin/VBox"]
+
+[node name="HowTo" type="RichTextLabel" parent="Margin/VBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 150)
+bbcode_enabled = true
+fit_content = true

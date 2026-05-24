@@ -1,0 +1,64 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://main.gd" id="1_main"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_main")
+
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.10, 0.08, 0.14, 1)
+
+[node name="TopBar" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 16.0
+offset_top = 12.0
+offset_right = 1130.0
+offset_bottom = 40.0
+text = ""
+
+[node name="Box" type="PanelContainer" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 60.0
+offset_top = -300.0
+offset_right = -60.0
+offset_bottom = -40.0
+
+[node name="VBox" type="VBoxContainer" parent="Box"]
+theme_override_constants/separation = 12
+
+[node name="Margin" type="MarginContainer" parent="Box/VBox"]
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 8
+
+[node name="TextVBox" type="VBoxContainer" parent="Box/VBox/Margin"]
+theme_override_constants/separation = 8
+
+[node name="Speaker" type="Label" parent="Box/VBox/Margin/TextVBox"]
+unique_name_in_owner = true
+theme_override_font_sizes/font_size = 22
+modulate = Color(1, 0.85, 0.5, 1)
+text = "Speaker"
+
+[node name="Body" type="RichTextLabel" parent="Box/VBox/Margin/TextVBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 90)
+bbcode_enabled = true
+fit_content = true
+theme_override_font_sizes/normal_font_size = 18
+text = ""
+
+[node name="Choices" type="VBoxContainer" parent="Box/VBox"]
+unique_name_in_owner = true
+theme_override_constants/separation = 6

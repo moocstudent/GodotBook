@@ -1,0 +1,113 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://main.gd" id="1_main"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_main")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.10, 0.13, 0.20, 1)
+
+[node name="Hint" type="Label" parent="."]
+offset_left = 24.0
+offset_top = 12.0
+offset_right = 1100.0
+offset_bottom = 48.0
+text = "HTTP:点 Fetch 拉 JSON · WebSocket:输文字发送到 echo,服务端原样回 · ESC 退出"
+
+[node name="HBox" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.0
+anchor_left = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 60.0
+offset_left = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+theme_override_constants/separation = 20
+
+[node name="HttpPanel" type="VBoxContainer" parent="HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="HttpTitle" type="Label" parent="HBox/HttpPanel"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "HTTPRequest"
+
+[node name="UrlEdit" type="LineEdit" parent="HBox/HttpPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "https://jsonplaceholder.typicode.com/todos/1"
+
+[node name="FetchButton" type="Button" parent="HBox/HttpPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Fetch JSON"
+
+[node name="HttpStatusLabel" type="Label" parent="HBox/HttpPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "idle"
+
+[node name="HttpBody" type="TextEdit" parent="HBox/HttpPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+editable = false
+placeholder_text = "(response body)"
+wrap_mode = 1
+
+[node name="WsPanel" type="VBoxContainer" parent="HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="WsTitle" type="Label" parent="HBox/WsPanel"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "WebSocket  (echo.websocket.events)"
+
+[node name="WsStatusLabel" type="Label" parent="HBox/WsPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "state: ?"
+
+[node name="WsRow" type="HBoxContainer" parent="HBox/WsPanel"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="WsInput" type="LineEdit" parent="HBox/WsPanel/WsRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "type a message and hit Send / Enter"
+
+[node name="SendButton" type="Button" parent="HBox/WsPanel/WsRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Send"
+
+[node name="ReconnectButton" type="Button" parent="HBox/WsPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Reconnect"
+
+[node name="WsLog" type="TextEdit" parent="HBox/WsPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+editable = false
+placeholder_text = "(log)"
+wrap_mode = 1

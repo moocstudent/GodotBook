@@ -1,0 +1,41 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://addons/godotstuff_dock/dock.gd" id="1_dock"]
+
+[node name="Dock" type="VBoxContainer"]
+script = ExtResource("1_dock")
+custom_minimum_size = Vector2(220, 200)
+
+[node name="Header" type="Label" parent="."]
+theme_override_font_sizes/font_size = 14
+text = "📋 GodotStuff"
+
+[node name="Tabs" type="TabContainer" parent="."]
+size_flags_vertical = 3
+
+[node name="Stats" type="VBoxContainer" parent="Tabs"]
+
+[node name="RefreshBtn" type="Button" parent="Tabs/Stats"]
+text = "Refresh stats"
+
+[node name="StatsLabel" type="RichTextLabel" parent="Tabs/Stats"]
+unique_name_in_owner = true
+size_flags_vertical = 3
+bbcode_enabled = true
+fit_content = false
+scroll_active = true
+text = "(open a scene)"
+
+[node name="Notes" type="VBoxContainer" parent="Tabs"]
+
+[node name="NotesHint" type="Label" parent="Tabs/Notes"]
+modulate = Color(1, 1, 1, 0.6)
+theme_override_font_sizes/font_size = 11
+autowrap_mode = 2
+text = "自动保存到 res://project_notes.md(随项目走)"
+
+[node name="NotesEdit" type="TextEdit" parent="Tabs/Notes"]
+unique_name_in_owner = true
+size_flags_vertical = 3
+placeholder_text = "项目笔记 / TODO …"
+wrap_mode = 1

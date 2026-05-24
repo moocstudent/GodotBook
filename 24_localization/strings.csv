@@ -1,0 +1,12 @@
+keys,en,zh,ja,es
+GAME_TITLE,My Game,我的游戏,マイゲーム,Mi Juego
+TAGLINE,A Godot localization demo,一个 Godot 本地化 demo,Godot ローカライズデモ,Una demo de localización de Godot
+BTN_START,Start,开始,スタート,Empezar
+BTN_OPTIONS,Options,选项,オプション,Opciones
+BTN_QUIT,Quit,退出,終了,Salir
+SCORE_LABEL,Score,得分,スコア,Puntuación
+LEVEL_LABEL,Level,等级,レベル,Nivel
+HINT_TEXT,Pick a language above. Labels switch live.,在上方选择语言,标签会实时切换。,上で言語を選ぶと、ラベルが即時に切り替わります。,Elige un idioma arriba. Las etiquetas cambian al instante.
+GREETING,"Hello, {name}!","你好,{name}!","こんにちは、{name}さん!","¡Hola, {name}!"
+WELCOME_BACK,"Welcome back. You played {hours}h.",欢迎回来。你已经玩了 {hours} 小时。,"おかえり。{hours}時間プレイしました。","Bienvenido. Has jugado {hours} h."
+LANG_NAME,English,中文,日本語,Español

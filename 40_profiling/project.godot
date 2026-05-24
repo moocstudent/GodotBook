@@ -1,0 +1,23 @@
+; Engine configuration file.
+
+config_version=5
+
+[application]
+
+config/name="40 Profiling"
+config/description="自定义 profiler 叠加 + 对象池 + 帧预算:实测池化 vs new/free 的差异。"
+run/main_scene="res://main.tscn"
+config/features=PackedStringArray("4.3", "GL Compatibility")
+config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=1152
+window/size/viewport_height=648
+window/stretch/mode="canvas_items"
+window/stretch/aspect="keep"
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"

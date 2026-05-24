@@ -1,0 +1,52 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://main.gd" id="1_main"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_main")
+
+[node name="Background" type="ColorRect" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.1, 0.13, 0.20, 1)
+
+[node name="Ground" type="ColorRect" parent="."]
+offset_left = 0.0
+offset_top = 500.0
+offset_right = 1152.0
+offset_bottom = 540.0
+color = Color(0.3, 0.4, 0.3, 1)
+
+[node name="Hint" type="Label" parent="."]
+offset_left = 24.0
+offset_top = 12.0
+offset_right = 1100.0
+offset_bottom = 48.0
+text = "A/D 走动 · Space 跳 · 看 StateLabel 状态机切换 · ESC 退出"
+
+[node name="StateLabel" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 24.0
+offset_top = 56.0
+offset_right = 1100.0
+offset_bottom = 92.0
+theme_override_font_sizes/font_size = 20
+text = "state: ?"
+
+[node name="Player" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(576, 460)
+
+[node name="Body" type="ColorRect" parent="Player"]
+unique_name_in_owner = true
+offset_left = -25.0
+offset_top = -50.0
+offset_right = 25.0
+offset_bottom = 0.0
+color = Color(0.95, 0.5, 0.4, 1)
+
+[node name="AnimPlayer" type="AnimationPlayer" parent="Player"]
+unique_name_in_owner = true
+
+[node name="AnimTree" type="AnimationTree" parent="Player"]
+unique_name_in_owner = true

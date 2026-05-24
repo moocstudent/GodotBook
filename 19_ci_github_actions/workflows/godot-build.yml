@@ -1,0 +1,91 @@
+name: Godot Build (Linux / Windows / macOS)
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:          # 也可手动触发
+
+env:
+  GODOT_VERSION: 4.3
+  GODOT_STATUS: stable
+  PROJECT_PATH: 01_hello_world   # 改成你想构建的 demo 目录,或仓库根 "."
+
+jobs:
+  export:
+    name: ${{ matrix.name }}
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: Linux
+            os: ubuntu-latest
+            preset: "Linux/X11"
+            output: build/game.x86_64
+            artifact_name: linux-build
+          - name: Windows
+            os: ubuntu-latest      # Linux runner 可交叉编译 Windows
+            preset: "Windows Desktop"
+            output: build/game.exe
+            artifact_name: windows-build
+          - name: macOS
+            os: macos-latest
+            preset: "macOS"
+            output: build/game.zip
+            artifact_name: macos-build
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # —— 装 Godot + 导出模板(Linux/macOS 通用) ——————————————
+      - name: Setup Godot (Linux/Windows export host)
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          set -euo pipefail
+          wget -q "https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-${GODOT_STATUS}/Godot_v${GODOT_VERSION}-${GODOT_STATUS}_linux.x86_64.zip"
+          unzip -q "Godot_v${GODOT_VERSION}-${GODOT_STATUS}_linux.x86_64.zip"
+          mv "Godot_v${GODOT_VERSION}-${GODOT_STATUS}_linux.x86_64" /usr/local/bin/godot
+          chmod +x /usr/local/bin/godot
+          godot --version
+
+          # 导出模板
+          wget -q "https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-${GODOT_STATUS}/Godot_v${GODOT_VERSION}-${GODOT_STATUS}_export_templates.tpz"
+          mkdir -p ~/.local/share/godot/export_templates/${GODOT_VERSION}.${GODOT_STATUS}
+          unzip -qo "Godot_v${GODOT_VERSION}-${GODOT_STATUS}_export_templates.tpz"
+          mv templates/* ~/.local/share/godot/export_templates/${GODOT_VERSION}.${GODOT_STATUS}/
+
+      - name: Setup Godot (macOS)
+        if: matrix.os == 'macos-latest'
+        run: |
+          set -euo pipefail
+          curl -sL -o godot.zip "https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-${GODOT_STATUS}/Godot_v${GODOT_VERSION}-${GODOT_STATUS}_macos.universal.zip"
+          unzip -q godot.zip
+          sudo mv Godot.app /Applications/Godot.app
+          # 暴露成 godot CLI
+          echo "/Applications/Godot.app/Contents/MacOS" >> $GITHUB_PATH
+          /Applications/Godot.app/Contents/MacOS/Godot --version
+
+          curl -sL -o templates.tpz "https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-${GODOT_STATUS}/Godot_v${GODOT_VERSION}-${GODOT_STATUS}_export_templates.tpz"
+          mkdir -p "$HOME/Library/Application Support/Godot/export_templates/${GODOT_VERSION}.${GODOT_STATUS}"
+          unzip -qo templates.tpz
+          mv templates/* "$HOME/Library/Application Support/Godot/export_templates/${GODOT_VERSION}.${GODOT_STATUS}/"
+
+      # —— 实际导出 ————————————————————————————————————————
+      - name: Export
+        working-directory: ${{ env.PROJECT_PATH }}
+        run: |
+          mkdir -p build
+          if [[ "${{ matrix.os }}" == "macos-latest" ]]; then
+            Godot --headless --export-release "${{ matrix.preset }}" "${{ matrix.output }}"
+          else
+            godot --headless --export-release "${{ matrix.preset }}" "${{ matrix.output }}"
+          fi
+
+      # —— 上传 artifact —————————————————————————————————————
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.artifact_name }}
+          path: ${{ env.PROJECT_PATH }}/build/
+          retention-days: 30

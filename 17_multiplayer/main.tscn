@@ -1,0 +1,102 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://main.gd" id="1_main"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_main")
+
+[node name="World" type="Node2D" parent="."]
+
+[node name="Background" type="ColorRect" parent="World"]
+offset_right = 900.0
+offset_bottom = 600.0
+color = Color(0.10, 0.13, 0.20, 1)
+
+[node name="Players" type="Node2D" parent="World"]
+unique_name_in_owner = true
+
+[node name="Spawner" type="MultiplayerSpawner" parent="World"]
+unique_name_in_owner = true
+_spawnable_scenes = PackedStringArray("res://player.tscn")
+spawn_path = NodePath("../Players")
+spawn_limit = 0
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="MenuPanel" type="Panel" parent="HUD"]
+unique_name_in_owner = true
+offset_left = 250.0
+offset_top = 160.0
+offset_right = 650.0
+offset_bottom = 440.0
+
+[node name="VBox" type="VBoxContainer" parent="HUD/MenuPanel"]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 380.0
+offset_bottom = 260.0
+theme_override_constants/separation = 12
+
+[node name="Title" type="Label" parent="HUD/MenuPanel/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Multiplayer Demo"
+horizontal_alignment = 1
+
+[node name="Hint" type="Label" parent="HUD/MenuPanel/VBox"]
+layout_mode = 2
+autowrap_mode = 2
+text = "用两个 Godot 窗口同时打开本项目:一个 Host,另一个 Join。WASD 控制自己的方块,所有人同步位置。"
+
+[node name="PortRow" type="HBoxContainer" parent="HUD/MenuPanel/VBox"]
+layout_mode = 2
+
+[node name="PortLabel" type="Label" parent="HUD/MenuPanel/VBox/PortRow"]
+layout_mode = 2
+custom_minimum_size = Vector2(60, 0)
+text = "Port"
+
+[node name="PortEdit" type="LineEdit" parent="HUD/MenuPanel/VBox/PortRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "12345"
+
+[node name="AddrRow" type="HBoxContainer" parent="HUD/MenuPanel/VBox"]
+layout_mode = 2
+
+[node name="AddrLabel" type="Label" parent="HUD/MenuPanel/VBox/AddrRow"]
+layout_mode = 2
+custom_minimum_size = Vector2(60, 0)
+text = "Host"
+
+[node name="AddrEdit" type="LineEdit" parent="HUD/MenuPanel/VBox/AddrRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "127.0.0.1"
+
+[node name="HostButton" type="Button" parent="HUD/MenuPanel/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Host (作为服务器)"
+
+[node name="JoinButton" type="Button" parent="HUD/MenuPanel/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Join (作为客户端)"
+
+[node name="StatusLabel" type="Label" parent="HUD/MenuPanel/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+autowrap_mode = 2
+text = "idle"
+horizontal_alignment = 1
+
+[node name="InfoLabel" type="Label" parent="HUD"]
+unique_name_in_owner = true
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 890.0
+offset_bottom = 30.0
+text = ""

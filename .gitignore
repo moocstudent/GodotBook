@@ -1,0 +1,30 @@
+# Godot 4 编辑器生成的缓存(打开项目后才会出现,不应提交)
+.godot/
+*/.godot/
+
+# 导出产物
+build/
+*/build/
+*.pck
+*.zip
+*.exe
+*.apk
+*.aab
+*.ipa
+
+# GDExtension 编译产物(demo 25)
+25_gdextension/bin/
+25_gdextension/godot-cpp/
+*.obj
+*.o
+*.os
+*.lib
+*.a
+
+# 运行时用户数据(本地存档等,不应提交)
+# user:// 不在仓库内,无需忽略
+
+# 系统/编辑器杂项
+.DS_Store
+Thumbs.db
+*.tmp

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <rect width="128" height="128" rx="16" fill="#15192a"/>
+  <text x="64" y="56" font-family="Arial" font-size="36" text-anchor="middle" fill="#56b4d3" font-weight="bold">C++</text>
+  <path d="M16 84 Q40 60 64 84 T112 84" stroke="#f6c259" stroke-width="4" fill="none"/>
+  <circle cx="16" cy="84" r="4" fill="#ef656f"/>
+  <circle cx="40" cy="68" r="4" fill="#f6c259"/>
+  <circle cx="64" cy="84" r="4" fill="#6cd070"/>
+  <circle cx="88" cy="100" r="4" fill="#56b4d3"/>
+  <circle cx="112" cy="84" r="4" fill="#ef656f"/>
+</svg>

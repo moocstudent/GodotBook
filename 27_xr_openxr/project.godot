@@ -1,0 +1,25 @@
+; Engine configuration file.
+
+config_version=5
+
+[application]
+
+config/name="27 XR OpenXR"
+config/description="OpenXR VR 脚手架:XROrigin3D + 双手柄 + 抓取,无头显也能跑(降级桌面预览)。"
+run/main_scene="res://main.tscn"
+config/features=PackedStringArray("4.3", "Forward Plus")
+config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=1152
+window/size/viewport_height=648
+
+[xr]
+
+openxr/enabled=true
+shaders/enabled=true
+
+[rendering]
+
+renderer/rendering_method="forward_plus"

@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://main.gd" id="1_main"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_main")
+
+[node name="Background" type="ColorRect" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.08, 0.1, 0.15, 1)
+
+[node name="Hint" type="Label" parent="."]
+offset_left = 16.0
+offset_top = 12.0
+offset_right = 1100.0
+offset_bottom = 52.0
+text = "Space 重新生成地形 · ESC 退出"
+
+[node name="SeedLabel" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 16.0
+offset_top = 44.0
+offset_right = 1100.0
+offset_bottom = 80.0
+text = "seed = ?"
+
+[node name="World" type="Node2D" parent="."]
+position = Vector2(96, 96)
+
+[node name="Terrain" type="TileMapLayer" parent="World"]
+unique_name_in_owner = true

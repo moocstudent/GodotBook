@@ -1,0 +1,23 @@
+[configuration]
+
+entry_symbol = "godotstuff_library_init"
+compatibility_minimum = "4.3"
+
+[libraries]
+
+; 编译产物的相对路径。SConstruct 会按 platform/target/arch 命名。
+; 如果你只为本机平台编译,只填对应一行就够;其它平台 Godot 会回退到默认 fail。
+
+windows.debug.x86_64    = "res://bin/libgodotstuff.windows.template_debug.x86_64.dll"
+windows.release.x86_64  = "res://bin/libgodotstuff.windows.template_release.x86_64.dll"
+
+linux.debug.x86_64      = "res://bin/libgodotstuff.linux.template_debug.x86_64.so"
+linux.release.x86_64    = "res://bin/libgodotstuff.linux.template_release.x86_64.so"
+
+macos.debug             = "res://bin/libgodotstuff.macos.template_debug.framework"
+macos.release           = "res://bin/libgodotstuff.macos.template_release.framework"
+
+android.debug.arm64     = "res://bin/libgodotstuff.android.template_debug.arm64.so"
+android.release.arm64   = "res://bin/libgodotstuff.android.template_release.arm64.so"
+android.debug.x86_64    = "res://bin/libgodotstuff.android.template_debug.x86_64.so"
+android.release.x86_64  = "res://bin/libgodotstuff.android.template_release.x86_64.so"

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="192" height="192" viewBox="0 0 192 192">
+  <rect width="192" height="192" rx="32" fill="#3ddc84"/>
+  <ellipse cx="96" cy="108" rx="58" ry="42" fill="#fff"/>
+  <circle cx="76" cy="100" r="6" fill="#21242b"/>
+  <circle cx="116" cy="100" r="6" fill="#21242b"/>
+  <line x1="62" y1="64" x2="74" y2="80" stroke="#3ddc84" stroke-width="6" stroke-linecap="round"/>
+  <line x1="130" y1="64" x2="118" y2="80" stroke="#3ddc84" stroke-width="6" stroke-linecap="round"/>
+</svg>

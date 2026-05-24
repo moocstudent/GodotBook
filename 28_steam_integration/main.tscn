@@ -1,0 +1,67 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://main.gd" id="1_main"]
+[ext_resource type="Script" path="res://steam_wrapper.gd" id="2_steam"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_main")
+
+[node name="Steam_" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_steam")
+
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.08, 0.11, 0.16, 1)
+
+[node name="VBox" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -180.0
+offset_right = 300.0
+offset_bottom = 180.0
+theme_override_constants/separation = 12
+
+[node name="Title" type="Label" parent="VBox"]
+theme_override_font_sizes/font_size = 26
+text = "Steam Integration"
+horizontal_alignment = 1
+
+[node name="StatusLabel" type="Label" parent="VBox"]
+unique_name_in_owner = true
+autowrap_mode = 2
+horizontal_alignment = 1
+text = ""
+
+[node name="Sep" type="HSeparator" parent="VBox"]
+
+[node name="UnlockBtn" type="Button" parent="VBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+text = "解锁成就 ACH_FIRST_WIN"
+
+[node name="ScoreBtn" type="Button" parent="VBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+text = "上传排行榜分数(随机)"
+
+[node name="CloudBtn" type="Button" parent="VBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+text = "云存档写入测试"
+
+[node name="Log" type="TextEdit" parent="VBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 140)
+editable = false
+wrap_mode = 1

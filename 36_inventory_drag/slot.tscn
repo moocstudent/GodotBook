@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://slot.gd" id="1_slot"]
+
+[node name="Slot" type="Panel"]
+custom_minimum_size = Vector2(64, 64)
+mouse_default_cursor_shape = 2
+script = ExtResource("1_slot")
+
+[node name="Icon" type="ColorRect" parent="."]
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 58.0
+offset_bottom = 58.0
+color = Color(1, 1, 1, 0.04)
+mouse_filter = 2
+
+[node name="Count" type="Label" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -28.0
+offset_top = -24.0
+offset_right = -4.0
+offset_bottom = -2.0
+text = ""
+horizontal_alignment = 2
+vertical_alignment = 2
+mouse_filter = 2
