@@ -4,8 +4,8 @@ name: Deploy GitHub Pages
 # 也支持手动触发。
 
 on:
-  push:
-    branches: [main]
+  # 手动触发(避免在未把 Pages 源设为 "GitHub Actions" 时自动失败)。
+  # 推荐用 Settings -> Pages -> Deploy from a branch -> main /(root) 直接发布已构建好的 HTML。
   workflow_dispatch:
 
 permissions:
