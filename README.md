@@ -1,6 +1,8 @@
 # Godot 学习仓 (godotstuff)
 
-按由浅入深的顺序组织的 **Godot 4** 学习 demo。每个 demo 都是一个**独立的 Godot 项目**(自带 `project.godot`),可单独打开运行。
+📖 **在线文档**: https://moocstudent.github.io/GodotBook/ ｜ 💻 **仓库**: https://github.com/moocstudent/GodotBook
+
+按由浅入深的顺序组织的 **Godot 4** 学习 demo。每个 demo 都是一个**独立的 Godot 项目**(自带 `project.godot`),可单独打开运行。在线文档里每个 demo 一页:文档 + 全部源码(语法高亮),无需安装即可浏览。
 
 ## 学习路径
 
